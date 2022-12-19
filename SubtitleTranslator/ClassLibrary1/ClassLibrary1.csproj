@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A926AAE7-5102-445E-9527-497750802FA1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ClassLibrary1</RootNamespace>
+    <AssemblyName>ClassLibrary1</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enums\FindType.cs" />
+    <Compile Include="Enums\SpellCheckAction.cs" />
+    <Compile Include="Enums\SubtitleSortCriteria.cs" />
+    <Compile Include="HistoryItem.cs" />
+    <Compile Include="Paragraph.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Subtitle.cs" />
+    <Compile Include="SubtitleFormats\AbcIViewer.cs" />
+    <Compile Include="SubtitleFormats\AdobeEncore.cs" />
+    <Compile Include="SubtitleFormats\AdobeEncoreLineTabs.cs" />
+    <Compile Include="SubtitleFormats\AdobeEncoreTabs.cs" />
+    <Compile Include="SubtitleFormats\AdobeEncoreWithLineNumbers.cs" />
+    <Compile Include="SubtitleFormats\AdobeEncoreWithLineNumbersNtsc.cs" />
+    <Compile Include="SubtitleFormats\AdvancedSubStationAlpha.cs" />
+    <Compile Include="SubtitleFormats\AQTitle.cs" />
+    <Compile Include="SubtitleFormats\AvidCaption.cs" />
+    <Compile Include="SubtitleFormats\BdnXml.cs" />
+    <Compile Include="SubtitleFormats\BelleNuitSubtitler.cs" />
+    <Compile Include="SubtitleFormats\CapMakerPlus.cs" />
+    <Compile Include="SubtitleFormats\Captionate.cs" />
+    <Compile Include="SubtitleFormats\CaptionateMs.cs" />
+    <Compile Include="SubtitleFormats\CaptionsInc.cs" />
+    <Compile Include="SubtitleFormats\CaraokeXml.cs" />
+    <Compile Include="SubtitleFormats\Cavena890.cs" />
+    <Compile Include="SubtitleFormats\CheetahCaption.cs" />
+    <Compile Include="SubtitleFormats\Csv.cs" />
+    <Compile Include="SubtitleFormats\DCSubtitle.cs" />
+    <Compile Include="SubtitleFormats\DigiBeta.cs" />
+    <Compile Include="SubtitleFormats\DvdStudioPro.cs" />
+    <Compile Include="SubtitleFormats\DvdStudioProSpace.cs" />
+    <Compile Include="SubtitleFormats\DvdSubtitle.cs" />
+    <Compile Include="SubtitleFormats\Eeg708.cs" />
+    <Compile Include="SubtitleFormats\F4Rtf.cs" />
+    <Compile Include="SubtitleFormats\F4Text.cs" />
+    <Compile Include="SubtitleFormats\F4Xml.cs" />
+    <Compile Include="SubtitleFormats\FabSubtitler.cs" />
+    <Compile Include="SubtitleFormats\FinalCutProTextXml.cs" />
+    <Compile Include="SubtitleFormats\FinalCutProXml.cs" />
+    <Compile Include="SubtitleFormats\FinalCutProXXml.cs" />
+    <Compile Include="SubtitleFormats\FlashXml.cs" />
+    <Compile Include="SubtitleFormats\GpacTtxt.cs" />
+    <Compile Include="SubtitleFormats\HtmlSamiArray.cs" />
+    <Compile Include="SubtitleFormats\Idx.cs" />
+    <Compile Include="SubtitleFormats\Json.cs" />
+    <Compile Include="SubtitleFormats\JsonType2.cs" />
+    <Compile Include="SubtitleFormats\MicroDvd.cs" />
+    <Compile Include="SubtitleFormats\MidwayInscriberCGX.cs" />
+    <Compile Include="SubtitleFormats\MPlayer2.cs" />
+    <Compile Include="SubtitleFormats\OpenDvt.cs" />
+    <Compile Include="SubtitleFormats\PE2.cs" />
+    <Compile Include="SubtitleFormats\PinnacleImpression.cs" />
+    <Compile Include="SubtitleFormats\PListCaption.cs" />
+    <Compile Include="SubtitleFormats\QuickTimeText.cs" />
+    <Compile Include="SubtitleFormats\RealTime.cs" />
+    <Compile Include="SubtitleFormats\RhozetHarmonic.cs" />
+    <Compile Include="SubtitleFormats\Sami.cs" />
+    <Compile Include="SubtitleFormats\Scenarist.cs" />
+    <Compile Include="SubtitleFormats\ScenaristClosedCaptions.cs" />
+    <Compile Include="SubtitleFormats\SoftNiSub.cs" />
+    <Compile Include="SubtitleFormats\Son.cs" />
+    <Compile Include="SubtitleFormats\SonicScenaristBitmaps.cs" />
+    <Compile Include="SubtitleFormats\SonyDVDArchitect.cs" />
+    <Compile Include="SubtitleFormats\SonyDVDArchitectExplicitDuration.cs" />
+    <Compile Include="SubtitleFormats\SonyDVDArchitectLineAndDuration.cs" />
+    <Compile Include="SubtitleFormats\SonyDVDArchitectTabs.cs" />
+    <Compile Include="SubtitleFormats\SonyDVDArchitectWithLineNumbers.cs" />
+    <Compile Include="SubtitleFormats\Spruce.cs" />
+    <Compile Include="SubtitleFormats\SpruceWithSpace.cs" />
+    <Compile Include="SubtitleFormats\Spt.cs" />
+    <Compile Include="SubtitleFormats\StructuredTitles.cs" />
+    <Compile Include="SubtitleFormats\SubRip.cs" />
+    <Compile Include="SubtitleFormats\SubStationAlpha.cs" />
+    <Compile Include="SubtitleFormats\SubtitleEditorProject.cs" />
+    <Compile Include="SubtitleFormats\SubtitleFormat.cs" />
+    <Compile Include="SubtitleFormats\SubViewer10.cs" />
+    <Compile Include="SubtitleFormats\SubViewer20.cs" />
+    <Compile Include="SubtitleFormats\SwiftText .cs" />
+    <Compile Include="SubtitleFormats\TimedText.cs" />
+    <Compile Include="SubtitleFormats\TimedText10.cs" />
+    <Compile Include="SubtitleFormats\TimedText200604.cs" />
+    <Compile Include="SubtitleFormats\TimeXml.cs" />
+    <Compile Include="SubtitleFormats\TitleExchangePro.cs" />
+    <Compile Include="SubtitleFormats\TmpegEncText.cs" />
+    <Compile Include="SubtitleFormats\TmpegEncXml.cs" />
+    <Compile Include="SubtitleFormats\TMPlayer.cs" />
+    <Compile Include="SubtitleFormats\TranscriberXml.cs" />
+    <Compile Include="SubtitleFormats\TurboTitler.cs" />
+    <Compile Include="SubtitleFormats\UleadSubtitleFormat.cs" />
+    <Compile Include="SubtitleFormats\Ultech130.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle1.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle10.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle11.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle12.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle13.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle14.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle15.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle16.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle17.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle18.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle2.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle3.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle4.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle5.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle6.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle7.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle8.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle9.cs" />
+    <Compile Include="SubtitleFormats\UTSubtitleXml.cs" />
+    <Compile Include="SubtitleFormats\Utx.cs" />
+    <Compile Include="SubtitleFormats\UtxFrames.cs" />
+    <Compile Include="SubtitleFormats\WebVTT.cs" />
+    <Compile Include="SubtitleFormats\Wsb.cs" />
+    <Compile Include="SubtitleFormats\YouTubeSbv.cs" />
+    <Compile Include="SubtitleFormats\ZeroG.cs" />
+    <Compile Include="TimeCode.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

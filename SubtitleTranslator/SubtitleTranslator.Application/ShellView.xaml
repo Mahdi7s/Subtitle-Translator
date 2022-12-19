@@ -1,0 +1,148 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:cal="http://www.caliburnproject.org"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:SubtitleTranslator_Application_Controllers="clr-namespace:SubtitleTranslator.Application.Controllers" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:Utils="clr-namespace:SubtitleTranslator.Application.Utils" mc:Ignorable="d" x:Name="window" x:Class="SubtitleTranslator.Application.ShellView" Background="Transparent" WindowStyle="None" ResizeMode="CanResizeWithGrip" Height="200" AllowsTransparency="True"
+        AllowDrop="True" Topmost="{Binding Settings.TopMost}" WindowStartupLocation="CenterScreen" WindowState="{Binding WindowState}" cal:Message.Attach="[Event Drop] = [Action OnFileDrop($eventArgs)]; [Event Loaded] = [Action OnViewLoaded($view)];[Event MouseLeave] = [Action OnWindowLeave()]" BorderThickness="1">
+    <Window.CommandBindings>
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Key="Space" Command="{Binding PlayOrPauseCommand}" ></KeyBinding>
+    </Window.InputBindings>
+    <Window.Resources>
+        <Storyboard x:Key="OnMouseEnter1">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="OnMouseLeave1">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="OnWindowMouseEnter">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="window">
+                <EasingColorKeyFrame KeyTime="0:0:0.5" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="OnWindowMouseEnter_Copy1">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="window">
+                <SplineColorKeyFrame KeyTime="0:0:0.5" Value="Transparent"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="OnGrdTopItemsMouseEnter">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grdTopItems">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="OnGrdTopItemsMouseEnter_Copy1">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grdTopItems">
+                <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="OnSettingsExpMouseEnter">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SettingsExpander">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="OnSettingsExpMouseEnter_Copy1">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SettingsExpander">
+        		<SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+        		<SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="grid">
+            <BeginStoryboard Storyboard="{StaticResource OnMouseEnter1}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="grid">
+            <BeginStoryboard x:Name="OnMouseLeave1_BeginStoryboard" Storyboard="{StaticResource OnMouseLeave1}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseEnter">
+            <BeginStoryboard x:Name="OnWindowMouseEnter_BeginStoryboard" Storyboard="{StaticResource OnWindowMouseEnter}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseLeave">
+            <BeginStoryboard x:Name="OnWindowMouseLeave_BeginStoryboard" Storyboard="{StaticResource OnWindowMouseEnter_Copy1}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="grdTopItems">
+            <BeginStoryboard x:Name="OnGrdTopItemsMouseEnter_BeginStoryboard" Storyboard="{StaticResource OnGrdTopItemsMouseEnter}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="grdTopItems">
+            <BeginStoryboard x:Name="OnGrdTopItemsMouseEnter_Copy1_BeginStoryboard" Storyboard="{StaticResource OnGrdTopItemsMouseEnter_Copy1}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="SettingsExpander"/>
+    </Window.Triggers>
+    <Grid x:Name="rootGrid">
+    <ContentControl x:Name="StartupChooseScreen" Visibility="{Binding ShowStartupChooseView, Converter={StaticResource BoolToVisibCon}, ConverterParameter=true}" ></ContentControl>
+    <Grid x:Name="grid1" Visibility="{Binding ShowStartupChooseView, Converter={StaticResource BoolToVisibCon}, ConverterParameter=false}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="grid" Margin="0" Grid.Row="2" Opacity="0" Background="{DynamicResource ItemsPlaceHoderBrush}">
+            <StackPanel HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Orientation="Horizontal">
+                <SubtitleTranslator_Application_Controllers:ImageButton x:Name="Prev" Content="ImageButton" SubtitleTranslator_Application_Controllers:ImageButton.ImageSource="Styles/LightDark/Images/previous.png" Style="{DynamicResource MediaButton}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="32" Height="32"/>
+                <SubtitleTranslator_Application_Controllers:ImageButton x:Name="PlayOrPause" Content="ImageButton" SubtitleTranslator_Application_Controllers:ImageButton.ImageSource="{Binding PlayPauseImage}" Height="32" Style="{DynamicResource MediaButton}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="32"/>
+                <SubtitleTranslator_Application_Controllers:ImageButton x:Name="Next" Content="ImageButton" SubtitleTranslator_Application_Controllers:ImageButton.ImageSource="Styles/LightDark/Images/next.png" Style="{DynamicResource MediaButton}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="32" Height="32"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" >
+                <SubtitleTranslator_Application_Controllers:ImageButton x:Name="Minimize" SubtitleTranslator_Application_Controllers:ImageButton.ImageSource="Styles/LightDark/Images/minimize.png" Width="32" Height="32" Style="{DynamicResource MediaButton}" />
+                <SubtitleTranslator_Application_Controllers:ImageButton x:Name="Close" SubtitleTranslator_Application_Controllers:ImageButton.ImageSource="Styles/LightDark/Images/close.png" Width="32" Height="32" Style="{DynamicResource MediaButton}" />
+            </StackPanel>
+        </Grid>
+        <Grid Margin="0" Height="32">
+            <Grid x:Name="grdTopItems" d:LayoutOverrides="VerticalMargin" Background="{DynamicResource ItemsPlaceHoderBrush}" Opacity="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="CurrentPosition" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0" Text="{Binding CurrentPosition, StringFormat={}{0:g}}"></TextBlock>
+                <Slider VerticalAlignment="Center" IsMoveToPointEnabled="True" SmallChange="0.5" LargeChange="999999" Minimum="0" Maximum="{Binding SliderMax}" Value="{Binding SliderValue}" Grid.Column="1" Style="{DynamicResource MediaSlider}">
+                    <i:Interaction.Triggers>
+                        <Utils:RoutedEventTrigger RoutedEvent="Thumb.DragStarted">
+                            <cal:ActionMessage MethodName="OnSliderDragStarted">
+                                
+                            </cal:ActionMessage>
+                        </Utils:RoutedEventTrigger>
+                        <Utils:RoutedEventTrigger RoutedEvent="Thumb.DragCompleted">
+                            <cal:ActionMessage MethodName="OnSliderDragCompleted">
+                                
+                            </cal:ActionMessage>
+                        </Utils:RoutedEventTrigger>
+                    </i:Interaction.Triggers>
+                </Slider>
+                <TextBlock x:Name="Duration" TextWrapping="Wrap" Text="TextBlock" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Margin="5,0"/>
+            </Grid>
+        </Grid>
+        <Grid x:Name="grid2" Margin="0" Grid.Row="1" Background="#01000000" cal:Message.Attach="[Event MouseLeftButtonDown] = [Action OnMouseLeftDown($eventArgs)];">
+            <ItemsControl x:Name="pnlText" HorizontalAlignment="Center" Hyperlink.Foreground="{Binding Settings.SubtitleForeground}" ItemsSource="{Binding Subtitle}" VerticalAlignment="Center" FontFamily="{Binding Settings.SubtitleFont}" FontSize="{Binding Settings.SubtitleFontSize}" >
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" Orientation="Horizontal"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Margin="2.5,0,2.5,5" ><Hyperlink  Foreground="{Binding ElementName=window, Path=DataContext.Settings.SubtitleForeground}" TextDecorations="{x:Null}"><TextBlock Text="{Binding}" cal:Message.Attach="[Event MouseLeftButtonDown] = [Action OnWordClick($source)]"></TextBlock></Hyperlink> </TextBlock>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+        <Expander x:Name="SettingsExpander" HorizontalAlignment="Left" Grid.RowSpan="1" Grid.Row="1" VerticalAlignment="Stretch" ExpandDirection="Right" IsExpanded="{Binding IsSettingsExpanded}">
+            <ContentControl x:Name="Settings"></ContentControl>
+        </Expander>
+        <Expander x:Name="DictionaryExpander" HorizontalAlignment="Right" Grid.RowSpan="1" Grid.Row="1" VerticalAlignment="Stretch" ExpandDirection="Left" IsExpanded="{Binding IsDictionaryExpanded}">
+            <ContentControl x:Name="Dictionary"></ContentControl>
+        </Expander>
+    </Grid>
+</Grid>
+</Window>

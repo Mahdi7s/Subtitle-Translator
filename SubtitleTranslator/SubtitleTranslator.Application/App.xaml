@@ -1,0 +1,18 @@
+﻿<Application x:Class="SubtitleTranslator.Application.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SubtitleTranslator.Application"
+             xmlns:Converters="clr-namespace:SubtitleTranslator.Application.Converters" Startup="App_Startup_1" DispatcherUnhandledException="App_DispatcherUnhandledException_1">
+    <Application.Resources>
+<ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <local:AppBootstrapper x:Key="bootstrapper"></local:AppBootstrapper>
+                    <Converters:BoolToVisibilityConverter x:Key="BoolToVisibCon" />
+                </ResourceDictionary>
+                <ResourceDictionary Source="Styles/LightDark/Styles.xaml"/>
+                <ResourceDictionary Source="Styles/LightDark/Colors.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

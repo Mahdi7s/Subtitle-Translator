@@ -1,0 +1,20 @@
+﻿<Window x:Class="SubtitleTranslator.Application.Views.StartupView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="StartupView" Height="300" Width="300">
+    <StackPanel Orientation="Vertical">
+    	<Grid x:Name="grdSelectMovie" Height="100">
+    		<Grid.ColumnDefinitions>
+    			<ColumnDefinition Width="0.298*"/>
+    			<ColumnDefinition Width="0.568*"/>
+    			<ColumnDefinition Width="0.134*"/>
+    		</Grid.ColumnDefinitions>
+    		<TextBlock Grid.Column="2" Height="16.666" Margin="8,28.667,8,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+    		<ListBox x:Name="RecentMovies" Margin="0"/>
+    	</Grid>
+    	<Grid x:Name="grdSelectSubtitle" Height="100"/>
+    	<Grid x:Name="grdSelectPlayer" Height="100"/>
+    	<Grid x:Name="grdAbout" Height="100"/>
+        
+    </StackPanel>
+</Window>

@@ -1,0 +1,2 @@
+1.for sqlite types we must use http://www.sqlite.org/datatype3.html
+2.after executing app from plugins folder of KMP we have problems, because: "CurrentDirectory" is "KMP Plugins Folder" not our app exe folder! (even in connection string!)

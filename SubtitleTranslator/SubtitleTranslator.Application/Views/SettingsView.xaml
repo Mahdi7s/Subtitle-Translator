@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="SubtitleTranslator.Application.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             MinWidth="200" BorderBrush="#FF959595" BorderThickness="0,0,1,0" Padding="0">
+    <UserControl.Resources>
+<DataTemplate x:Key="ColorPickerTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Rectangle Width="16" Height="16" Fill="{Binding}" Margin="5,0"  />
+                <TextBlock Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </StackPanel>
+        </DataTemplate>
+<DataTemplate x:Key="TextComboBoxTemplate">
+            <TextBlock HorizontalAlignment="Left" Text="{Binding}" />
+        </DataTemplate>
+    </UserControl.Resources>
+    <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Padding="5" Template="{DynamicResource MediaScrollViewer}">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions> 
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+			<TextBlock HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="0,0,0,5"><Run Text="Subtitle Font"/></TextBlock>
+			<ComboBox Grid.Row="1" ItemsSource="{x:Static Fonts.SystemFontFamilies}" SelectedItem="{Binding SubtitleFont}" Style="{DynamicResource MediaComboBox}">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<Grid HorizontalAlignment="Stretch" Width="180" VerticalAlignment="Stretch" >
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+							<TextBlock HorizontalAlignment="Center"  Text="{Binding}" Margin="0" d:LayoutOverrides="Height" TextAlignment="Center" />
+							<TextBlock HorizontalAlignment="Center" Grid.Column="2" Text="sample" FontFamily="{Binding}" d:LayoutOverrides="Height" TextAlignment="Center" />
+						</Grid>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+				<ComboBox.ItemsPanel>
+					<ItemsPanelTemplate>
+						<StackPanel SnapsToDevicePixels="True" IsItemsHost="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+					</ItemsPanelTemplate>
+				</ComboBox.ItemsPanel>
+			</ComboBox>
+<ComboBox Grid.Row="1" Width="40" Grid.Column="1" ItemsSource="{Binding FontSizes}" SelectedItem="{Binding SubtitleFontSize}" Style="{DynamicResource MediaComboBox}" ItemTemplate="{DynamicResource TextComboBoxTemplate}">
+			</ComboBox>
+        
+			<TextBlock HorizontalAlignment="Center" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,5"><Run Text="Subtitle Color"/></TextBlock>
+			<ComboBox Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding AppBrushes}" SelectedItem="{Binding SubtitleForeground}" ItemTemplate="{StaticResource ColorPickerTemplate}"  Style="{DynamicResource MediaComboBox}"/>
+        
+			<TextBlock HorizontalAlignment="Center" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,5"><Run Text="Window Color"/></TextBlock>    
+			<ComboBox Grid.Row="5" Grid.ColumnSpan="2" ItemsSource="{Binding AppBrushes}" SelectedItem="{Binding WindowBackground}" ItemTemplate="{StaticResource ColorPickerTemplate}" Style="{DynamicResource MediaComboBox}"/>
+            
+            <TextBlock HorizontalAlignment="Center" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,5"><Run Text="Translation Delay"/></TextBlock>
+            <CheckBox x:Name="PauseWhileTranslation" Grid.Row="7" Grid.ColumnSpan="2" Margin="0,5,0,0" Content="Pause while translation"/>
+            <ComboBox Grid.Row="7" Grid.Column="1" IsEnabled="{Binding PauseWhileTranslation}" ItemsSource="{Binding TranslationDelays}" SelectedItem="{Binding SelectedTranslationDelay}" ItemTemplate="{StaticResource TextComboBoxTemplate}" Style="{DynamicResource MediaComboBox}"/>
+			<CheckBox x:Name="TopMost" Grid.Row="8" Grid.ColumnSpan="2" Margin="0,5,0,0" Content="Is Top Most"/>
+		</Grid>
+	</ScrollViewer>
+</UserControl>

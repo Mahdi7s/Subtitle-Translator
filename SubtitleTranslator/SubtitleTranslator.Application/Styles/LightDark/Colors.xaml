@@ -1,0 +1,6 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:System="clr-namespace:System;assembly=mscorlib">
+	<!-- Resource dictionary entries should be defined here. -->
+	<System:Double x:Key="bottomNavBackColor">0.489</System:Double>
+</ResourceDictionary>

@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="SubtitleTranslator.Application.Views.DictionaryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Controllers="clr-namespace:SubtitleTranslator.Application.Controllers" mc:Ignorable="d"
+             xmlns:cal="http://www.caliburnproject.org"
+             d:DesignHeight="200" d:DesignWidth="200" MaxWidth="250" MinWidth="200" BorderBrush="#FF959595" BorderThickness="1,0,0,0" Margin="5" Padding="0">
+    <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Disabled"  ScrollViewer.VerticalScrollBarVisibility="Auto" Padding="5" Template="{DynamicResource MediaScrollViewer}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="Word" >
+                <TextBox.InputBindings>
+                        <KeyBinding Key="Enter" Command="{Binding SearchCommand}" ></KeyBinding>
+                </TextBox.InputBindings>
+            </TextBox>
+            <Controllers:ImageButton x:Name="Search" ToolTip="جستجو" Width="24" Height="24" Grid.Column="1" Style="{DynamicResource MediaButton}" Controllers:ImageButton.ImageSource="/Styles/LightDark/Images/Magnifier-UI-32.png"/>
+            <Controllers:ImageButton x:Name="AddToLightner" ToolTip="اضافه به لایتنر" Width="24" Height="24" Grid.Column="2" Style="{DynamicResource MediaButton}" Controllers:ImageButton.ImageSource="/Styles/LightDark/Images/add.png"/>
+            <!-- Suggests -->
+            <Grid Grid.ColumnSpan="3" Grid.Row="3" Visibility="{Binding SuggestsVisibility}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock TextAlignment="Center" FontWeight="Bold" Text="کلمات پیشنهادی"></TextBlock>
+                <ItemsControl x:Name="Suggests" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel IsItemsHost="True" Orientation="Horizontal"></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Margin="2.5,0,2.5,5" ><Hyperlink><TextBlock Text="{Binding}" cal:Message.Attach="[Event MouseLeftButtonDown] = [Action OnSuggestClick($source)]"></TextBlock></Hyperlink></TextBlock>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+            <!-- Results -->
+            <ItemsControl x:Name="Results" Grid.ColumnSpan="3" Grid.Row="2" Margin="0 10 0 0">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel IsItemsHost="True" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="Black" Padding="5 3 5 6">
+                            <TextBlock Text="{Binding}" TextAlignment="Right" TextWrapping="Wrap"  />
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+    </ScrollViewer>
+</UserControl>
